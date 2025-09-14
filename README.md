@@ -1,5 +1,5 @@
 # CarServiceMangementCapstone
-### Uml Class Diagram
+### UML Class Diagram
 
 
 
