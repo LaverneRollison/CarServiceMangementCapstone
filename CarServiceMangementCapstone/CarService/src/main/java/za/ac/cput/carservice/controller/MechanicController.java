@@ -7,6 +7,7 @@ import za.ac.cput.carservice.service.MechanicService;
 
 import java.util.List;
 
+@CrossOrigin(origins = "http://localhost:3001/")
 @RestController
 @RequestMapping("/api/mechanics")
 public class MechanicController {

@@ -6,7 +6,7 @@ import za.ac.cput.carservice.domain.Customer;
 import za.ac.cput.carservice.service.CustomerService;
 
 import java.util.List;
-
+@CrossOrigin(origins = "http://localhost:3001/")
 @RestController
 @RequestMapping("/api/customers")
 public class CustomerController {

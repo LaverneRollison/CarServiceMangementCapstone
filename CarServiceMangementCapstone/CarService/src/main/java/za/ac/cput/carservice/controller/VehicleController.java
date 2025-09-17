@@ -7,6 +7,8 @@ import za.ac.cput.carservice.factory.VehicleFactory;
 import za.ac.cput.carservice.service.VehicleService;
 
 import java.util.List;
+
+@CrossOrigin(origins = "http://localhost:3001/")
 @RestController
 @RequestMapping("/api/vehicles")
 public class VehicleController {

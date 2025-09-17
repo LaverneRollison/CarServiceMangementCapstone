@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.*;
 import za.ac.cput.carservice.domain.InventoryItem;
 import za.ac.cput.carservice.service.InventoryItemService;
 
-
+@CrossOrigin(origins = "http://localhost:3001/")
 @RestController
 @RequestMapping("/inventoryItem")
 public class InventoryItemController {

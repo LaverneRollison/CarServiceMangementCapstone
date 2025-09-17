@@ -8,6 +8,7 @@ import za.ac.cput.carservice.service.ServiceOrderService;
 
 import java.util.List;
 
+@CrossOrigin(origins = "http://localhost:3001/")
 @RestController
 @RequestMapping("/api/service-orders")
 public class ServiceOrderController {

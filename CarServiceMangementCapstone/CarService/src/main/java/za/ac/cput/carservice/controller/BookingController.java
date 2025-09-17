@@ -8,6 +8,7 @@ import za.ac.cput.carservice.service.BookingService;
 
 import java.util.List;
 
+@CrossOrigin(origins = "http://localhost:3001/")
 @RestController
 @RequestMapping("/api/bookings")
 public class BookingController {

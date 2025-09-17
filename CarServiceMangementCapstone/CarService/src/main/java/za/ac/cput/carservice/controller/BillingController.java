@@ -8,6 +8,7 @@ import za.ac.cput.carservice.service.BillingService;
 
 import java.util.List;
 
+@CrossOrigin(origins = "http://localhost:3001/")
 @RestController
 @RequestMapping("/api/billings")
 public class BillingController {
