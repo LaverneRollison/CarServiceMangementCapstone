@@ -3,17 +3,16 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-
 @Entity
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int Userid;
-    private String Username;
-    private String Password;
-    private String Email;
-    private String Phone;
-    private String Role;
+    protected int Userid;
+    protected String Username;
+    protected String Password;
+    protected String Email;
+    protected String Phone;
+    protected String Role;
 
     public User() {
     }

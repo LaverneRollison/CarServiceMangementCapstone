@@ -8,12 +8,18 @@ public class CustomerFactory {
 
     }
 
-    public static Customer createCustomer(String address) {
+    public static Customer createCustomer(Long customerId,String address, String Username, String Password, String Email, String Phone, String Role) {
         if (address == null || address.isBlank()) {
             throw new IllegalArgumentException("Address cannot be null or blank");
         }
         return new Customer.Builder()
-                .address(address.trim())
+                .setAddress(address)
+                .setUsername(Username)
+                .setPassword(Password)
+                .setEmail(Email)
+                .setPhone(Phone)
+                .setRole(Role)
                 .build();
+
     }
 }

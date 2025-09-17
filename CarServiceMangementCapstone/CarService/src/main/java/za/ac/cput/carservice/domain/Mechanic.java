@@ -4,27 +4,26 @@ import jakarta.persistence.*;
 import java.util.Objects;
 
 @Entity
-@Table(name = "mechanics")
-public class Mechanic {
+public class Mechanic extends User{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long mechanicId;
-
-    @Column(nullable = false)
     private String specialization;
-
-    @Column
     private String contactInfo;
 
-    protected Mechanic() {
-        // Required by JPA
-    }
+    protected Mechanic(){super();}
+
 
     private Mechanic(Builder builder) {
         this.mechanicId = builder.mechanicId;
         this.specialization = builder.specialization;
         this.contactInfo = builder.contactInfo;
+        this.Username = builder.Username;
+        this.Password = builder.Password;
+        this.Email = builder.Email;
+        this.Phone = builder.Phone;
+        this.Role = builder.Role;
     }
 
     public Long getMechanicId() { return mechanicId; }
@@ -37,7 +36,10 @@ public class Mechanic {
         }
         this.specialization = newSpecialization.trim();
     }
-
+@Override
+public String toString() { return
+        "Mechanic{"+ super.toString()+"MechanicId"+mechanicId+"Specialization"+specialization+"ContactInfo"+contactInfo+"}";
+}
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -55,26 +57,60 @@ public class Mechanic {
         private Long mechanicId;
         private String specialization;
         private String contactInfo;
+        private String Username;
+        private String Password;
+        private String Email;
+        private String Phone;
+        private String Role;
 
         public Builder mechanicId(Long mechanicId) {
             this.mechanicId = mechanicId;
             return this;
         }
 
-        public Builder specialization(String specialization) {
+        public Mechanic.Builder setspecialization(String specialization) {
             this.specialization = specialization;
             return this;
         }
 
-        public Builder contactInfo(String contactInfo) {
+        public Mechanic.Builder setcontactInfo(String contactInfo) {
             this.contactInfo = contactInfo;
             return this;
         }
 
+        public Mechanic.Builder setUsername(String Username) {
+            this.Username= Username;
+            return this;
+        }
+        public Mechanic.Builder setPassword(String Password) {
+            this.Password = Password;
+            return this;
+        }
+        public Mechanic.Builder setEmail(String Email) {
+            this.Email = Email;
+            return this;
+        }
+        public Mechanic.Builder setPhone(String Phone) {
+            this.Phone = Phone;
+            return this;
+        }
+        public Mechanic.Builder setRole(String Role) {
+            this.Role = Role;
+            return this;
+        }
+           public Builder copy(Mechanic mechanic) {
+            this.mechanicId = mechanic.mechanicId;
+            this.specialization = mechanic.getSpecialization();
+            this.contactInfo = mechanic.getContactInfo();
+            this.Username = mechanic.getUsername();
+            this.Password = mechanic.getPassword();
+            this.Email = mechanic.getEmail();
+            this.Phone = mechanic.getPhone();
+            this.Role = mechanic.getRole();
+            return this;
+           }
         public Mechanic build() {
-            if (specialization == null || specialization.isBlank()) {
-                throw new IllegalStateException("Specialization is required");
-            }
+
             return new Mechanic(this);
         }
     }

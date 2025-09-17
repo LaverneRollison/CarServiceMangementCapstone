@@ -4,23 +4,23 @@ import jakarta.persistence.*;
 import java.util.Objects;
 
 @Entity
-@Table(name = "customers")
-public class Customer {
+public class Customer extends User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long customerId;
-
-    @Column(nullable = false)
     private String address;
 
-    protected Customer() {
-        // Required by JPA
-    }
+    public Customer() {super();}
 
     private Customer(Builder builder) {
         this.customerId = builder.customerId;
         this.address = builder.address;
+        this.Username = builder.Username;
+        this.Password = builder.Password;
+        this.Email = builder.Email;
+        this.Phone = builder.Phone;
+        this.Role = builder.Role;
     }
 
     public Long getCustomerId() { return customerId; }
@@ -32,6 +32,8 @@ public class Customer {
         }
         this.address = newAddress.trim();
     }
+@Override
+public String toString() {return "Customer{"+super.toString()+"CustomerId"+customerId+"Address"+address+"}";}
 
     @Override
     public boolean equals(Object o) {
@@ -49,21 +51,53 @@ public class Customer {
     public static class Builder {
         private Long customerId;
         private String address;
+        private String Username;
+        private String Password;
+        private String Email;
+        private String Phone;
+        private String Role;
 
         public Builder customerId(Long customerId) {
             this.customerId = customerId;
             return this;
         }
 
-        public Builder address(String address) {
-            this.address = address;
+        public Customer.Builder setAddress(String Address) {
+            this.address = Address;
             return this;
         }
+        public Customer.Builder setUsername(String Username) {
+            this.Username= Username;
+            return this;
+}
+public Customer.Builder setPassword(String password) {
+            this.Password = password;
+            return this;
+}
+public Customer.Builder setEmail(String email) {
+            this.Email = email;
+            return this;
+}
+public Customer.Builder setPhone(String phone) {
+            this.Phone = phone;
+            return this;
+}
+public Customer.Builder setRole(String role) {
+            this.Role = role;
+            return this;
+}
 
+public User copy(Customer customer) {
+            this.customerId = customer.customerId;
+            this.address = customer.address;
+            this.Username = customer.getUsername();
+            this.Password = customer.getPassword();
+            this.Email = customer.getEmail();
+            this.Phone = customer.getPhone();
+            this.Role = customer.getRole();
+            return this.build();
+}
         public Customer build() {
-            if (address == null || address.isBlank()) {
-                throw new IllegalStateException("Address is required");
-            }
             return new Customer(this);
         }
     }
