@@ -9,7 +9,7 @@ import za.ac.cput.carservice.domain.ServiceItem;
 import za.ac.cput.carservice.service.ServiceItemService;
 
 @RestController
-@RequestMapping("/serviceItem")
+@RequestMapping("api/serviceItem")
 public class ServiceItemController {
 
     private final ServiceItemService service;

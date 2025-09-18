@@ -6,9 +6,8 @@ import org.springframework.web.bind.annotation.*;
 import za.ac.cput.carservice.domain.InventoryItem;
 import za.ac.cput.carservice.service.InventoryItemService;
 
-
 @RestController
-@RequestMapping("/inventoryItem")
+@RequestMapping("/api/inventoryItem")
 public class InventoryItemController {
 
     private final InventoryItemService service;
