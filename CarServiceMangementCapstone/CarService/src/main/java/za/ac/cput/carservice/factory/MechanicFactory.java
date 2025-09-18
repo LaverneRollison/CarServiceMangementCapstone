@@ -8,7 +8,7 @@ public class MechanicFactory {
 
     }
 
-    public static Mechanic createMechanic(Long mechanicId,String specialization, String contactInfo,String Username, String Password, String Email, String Phone, String Role ) {
+    public static Mechanic createMechanic(Long UserId, String specialization, String contactInfo,String Username, String Password, String Email, String Phone, String Role ) {
         if (specialization == null || specialization.isBlank()) {
             throw new IllegalArgumentException("Specialization cannot be null or blank");
         }

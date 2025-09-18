@@ -8,7 +8,7 @@ public class CustomerFactory {
 
     }
 
-    public static Customer createCustomer(Long customerId,String address, String Username, String Password, String Email, String Phone, String Role) {
+    public static Customer createCustomer(Long UserId, String address, String Username, String Password, String Email, String Phone, String Role) {
         if (address == null || address.isBlank()) {
             throw new IllegalArgumentException("Address cannot be null or blank");
         }

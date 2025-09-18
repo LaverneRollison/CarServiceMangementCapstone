@@ -4,17 +4,16 @@ import jakarta.persistence.*;
 import java.util.Objects;
 
 @Entity
+@DiscriminatorValue("CUSTOMER")
 public class Customer extends User {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long customerId;
+
     private String address;
 
     public Customer() {super();}
 
     private Customer(Builder builder) {
-        this.customerId = builder.customerId;
+        this.UserId=builder.UserId;
         this.address = builder.address;
         this.Username = builder.Username;
         this.Password = builder.Password;
@@ -23,7 +22,7 @@ public class Customer extends User {
         this.Role = builder.Role;
     }
 
-    public Long getCustomerId() { return customerId; }
+    //public Long getCustomerId() { return customerId; }
     public String getAddress() { return address; }
 
     public void updateAddress(String newAddress) {
@@ -33,23 +32,13 @@ public class Customer extends User {
         this.address = newAddress.trim();
     }
 @Override
-public String toString() {return "Customer{"+super.toString()+"CustomerId"+customerId+"Address"+address+"}";}
+public String toString() {return "Customer{"+super.toString()+"Address"+address+"}";}
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Customer)) return false;
-        Customer customer = (Customer) o;
-        return Objects.equals(customerId, customer.customerId);
-    }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(customerId);
-    }
+
 
     public static class Builder {
-        private Long customerId;
+        private Long UserId;
         private String address;
         private String Username;
         private String Password;
@@ -57,8 +46,8 @@ public String toString() {return "Customer{"+super.toString()+"CustomerId"+custo
         private String Phone;
         private String Role;
 
-        public Builder customerId(Long customerId) {
-            this.customerId = customerId;
+        public Builder UserId(Long UserId) {
+            this.UserId = UserId;
             return this;
         }
 
@@ -88,7 +77,7 @@ public Customer.Builder setRole(String role) {
 }
 
 public User copy(Customer customer) {
-            this.customerId = customer.customerId;
+            this.UserId = customer.getUserId();
             this.address = customer.address;
             this.Username = customer.getUsername();
             this.Password = customer.getPassword();

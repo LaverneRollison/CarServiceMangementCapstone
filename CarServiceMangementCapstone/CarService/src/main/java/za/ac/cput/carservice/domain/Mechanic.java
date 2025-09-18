@@ -4,11 +4,11 @@ import jakarta.persistence.*;
 import java.util.Objects;
 
 @Entity
+@DiscriminatorValue("MECHANIC")
+
 public class Mechanic extends User{
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long mechanicId;
+
     private String specialization;
     private String contactInfo;
 
@@ -16,7 +16,7 @@ public class Mechanic extends User{
 
 
     private Mechanic(Builder builder) {
-        this.mechanicId = builder.mechanicId;
+       this.UserId = builder.UserId;
         this.specialization = builder.specialization;
         this.contactInfo = builder.contactInfo;
         this.Username = builder.Username;
@@ -26,7 +26,7 @@ public class Mechanic extends User{
         this.Role = builder.Role;
     }
 
-    public Long getMechanicId() { return mechanicId; }
+
     public String getSpecialization() { return specialization; }
     public String getContactInfo() { return contactInfo; }
 
@@ -38,23 +38,12 @@ public class Mechanic extends User{
     }
 @Override
 public String toString() { return
-        "Mechanic{"+ super.toString()+"MechanicId"+mechanicId+"Specialization"+specialization+"ContactInfo"+contactInfo+"}";
+        "Mechanic{"+ super.toString()+"Specialization"+specialization+"ContactInfo"+contactInfo+"}";
 }
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Mechanic)) return false;
-        Mechanic mechanic = (Mechanic) o;
-        return Objects.equals(mechanicId, mechanic.mechanicId);
-    }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(mechanicId);
-    }
 
     public static class Builder {
-        private Long mechanicId;
+        private Long UserId;
         private String specialization;
         private String contactInfo;
         private String Username;
@@ -63,11 +52,11 @@ public String toString() { return
         private String Phone;
         private String Role;
 
-        public Builder mechanicId(Long mechanicId) {
-            this.mechanicId = mechanicId;
+
+        public Mechanic.Builder UserId(Long UserId) {
+            this.UserId = UserId;
             return this;
         }
-
         public Mechanic.Builder setspecialization(String specialization) {
             this.specialization = specialization;
             return this;
@@ -99,7 +88,7 @@ public String toString() { return
             return this;
         }
            public Builder copy(Mechanic mechanic) {
-            this.mechanicId = mechanic.mechanicId;
+           this.UserId = mechanic.UserId;
             this.specialization = mechanic.getSpecialization();
             this.contactInfo = mechanic.getContactInfo();
             this.Username = mechanic.getUsername();

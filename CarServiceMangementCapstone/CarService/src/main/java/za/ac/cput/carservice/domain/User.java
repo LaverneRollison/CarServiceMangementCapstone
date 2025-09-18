@@ -1,13 +1,14 @@
 package za.ac.cput.carservice.domain;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+
 @Entity
+@Table(name = "User")
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name = "user_type")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    protected int Userid;
+    protected long UserId;
     protected String Username;
     protected String Password;
     protected String Email;
@@ -18,7 +19,7 @@ public class User {
     }
 
     private User(Builder builder) {
-        this.Userid = builder.Userid;
+        this.UserId = builder.UserId;
         this.Username = builder.Username;
         this.Password = builder.Password;
         this.Email = builder.Email;
@@ -26,8 +27,8 @@ public class User {
         this.Role = builder.Role;
     }
 
-    public int getUserid() {
-        return Userid;
+    public long getUserId() {
+        return UserId;
     }
 
     public String getUsername() {
@@ -52,7 +53,7 @@ public class User {
 
 
     public static class Builder {
-        private int Userid;
+        private long UserId;
         private String Username;
         private String Password;
         private String Email;
@@ -60,8 +61,8 @@ public class User {
         private String Role;
 
 
-        public Builder setUserid(int Userid) {
-            this.Userid = Userid;
+        public Builder setUserId(long UserId) {
+            this.UserId = UserId;
             return this;
         }
 
@@ -91,7 +92,7 @@ public class User {
             return this;
         }
         public User.Builder copy(User user) {
-            this.Userid = user.Userid;
+            this.UserId = user.UserId;
             this.Username = user.Username;
             this.Password = user.Password;
             this.Email = user.Email;
